@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Simple brute force implementation
@@ -42,6 +43,16 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
 		}
 		
 		return result;
+	}
+
+	@Override
+	public Map<String, Integer> readDataFromFile(String filepath) {
+		return null;
+	}
+
+	@Override
+	public void writeSymptoms(String resultPath, Map<String, Integer> symptoms) {
+		
 	}
 
 }

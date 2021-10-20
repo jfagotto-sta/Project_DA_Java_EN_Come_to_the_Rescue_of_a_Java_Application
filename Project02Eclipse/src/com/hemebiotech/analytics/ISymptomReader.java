@@ -1,5 +1,6 @@
 package com.hemebiotech.analytics;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -25,4 +26,6 @@ public interface ISymptomReader {
 	 */
 	
 	public void writeSymptoms(String resultPath, Map<String, Integer> symptoms);
+
+	List<String> GetSymptoms();
 }
