@@ -2,6 +2,7 @@ package com.hemebiotech.analytics;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -36,9 +37,13 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
 	}
 
 	@Override
-	public void writeSymptoms(String resultPath, Map<String, Integer> symptoms) {
-		// TODO Auto-generated method stub
-		
+	public void writeSymptoms(String resultPath, Map<String, Integer> Symptoms) {
+		try {
+			FileWriter writer = new FileWriter(resultPath + "toto.txt");
+			writer.write(Symptoms.toString());
+			writer.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} 
 	}
-
 }	

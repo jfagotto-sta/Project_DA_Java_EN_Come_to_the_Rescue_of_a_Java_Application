@@ -25,7 +25,6 @@ public interface ISymptomReader {
 	 * @param resultPath
 	 * @param symptoms
 	 */
-	
 	public void writeSymptoms(String resultPath, Map<String, Integer> symptoms);
 
 }
