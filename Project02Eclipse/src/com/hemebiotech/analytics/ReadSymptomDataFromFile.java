@@ -3,8 +3,7 @@ package com.hemebiotech.analytics;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -13,46 +12,33 @@ import java.util.Map;
  */
 public class ReadSymptomDataFromFile implements ISymptomReader {
 
-	private String filepath;
-	
-	/**
-	 * 
-	 * @param filepath a full or partial path to file with symptom strings in it, one per line
-	 */
-	public ReadSymptomDataFromFile (String filepath) {
-		this.filepath = filepath;
-	}
-	
 	@Override
-	public List<String> GetSymptoms() {
-		ArrayList<String> result = new ArrayList<String>();
+	public Map<String, Integer> readDataFromFile(String filepath) throws IOException{
 		
-		if (filepath != null) {
-			try {
-				BufferedReader reader = new BufferedReader (new FileReader(filepath));
-				String line = reader.readLine();
-				
-				while (line != null) {
-					result.add(line);
-					line = reader.readLine();
-				}
-				reader.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
+		Map<String,Integer> Symptoms = new HashMap<>();
 		
-		return result;
-	}
+		try (BufferedReader reader = new BufferedReader (new FileReader(filepath))) {
+			
+			String line = reader.readLine();
 
-	@Override
-	public Map<String, Integer> readDataFromFile(String filepath) {
-		return null;
+			while (line != null) {
+					if (Symptoms.containsKey(line)) {
+						Symptoms.put(line, Symptoms.get(line)+1);
+						
+					}
+					else 
+						Symptoms.put(line, 1);
+					
+					line = reader.readLine();
+			}	
+		}
+		return Symptoms;
 	}
 
 	@Override
 	public void writeSymptoms(String resultPath, Map<String, Integer> symptoms) {
+		// TODO Auto-generated method stub
 		
 	}
 
-}
+}	

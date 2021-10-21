@@ -1,6 +1,6 @@
 package com.hemebiotech.analytics;
 
-import java.util.List;
+import java.io.IOException;
 import java.util.Map;
 
 /**
@@ -15,9 +15,10 @@ public interface ISymptomReader {
 	/**
 	 * Read and count line from a file
 	 * @param the path of a file containing one string per line
-	 * @return a map with strings extracts and count from the file : symptomes in our case
+	 * @return a map with strings extracts and count from the file : symptoms in our case
+	 * @throws IOException 
 	 */
-	public Map<String, Integer> readDataFromFile (String filepath);
+	public Map<String, Integer> readDataFromFile(String filepath) throws IOException;
 	
 	/**
 	 * Generate a new file with the result
@@ -27,5 +28,4 @@ public interface ISymptomReader {
 	
 	public void writeSymptoms(String resultPath, Map<String, Integer> symptoms);
 
-	List<String> GetSymptoms();
 }
