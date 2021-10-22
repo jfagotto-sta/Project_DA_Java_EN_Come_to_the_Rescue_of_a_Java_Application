@@ -24,8 +24,8 @@ public interface ISymptomTools {
 	
 	/**
 	 * Generate a new file with the result
-	 * @param resultPath
-	 * @param symptoms
+	 * @param FilePath : Path where the result file will be created
+	 * @param name
 	 */
 	public void writeSymptoms(String name, String FilePath, Map<String, Integer> symptoms);
 
