@@ -1,21 +1,31 @@
 package com.hemebiotech.analytics;
 
 import java.util.Map;
+import javax.swing.JOptionPane;
 
 public class AnalyticsCounter {
 	
-	static String FilePath = "D:/Workspace/Project_DA_Java_EN_Come_to_the_Rescue_of_a_Java_Application/Project02Eclipse/symptoms.txt";
 	
 	public static void main(String args[]) throws Exception {
 		
+		String Source = JOptionPane.showInputDialog("Merci d'indiquer le chemin complet de la liste de symptomes non comptés");
+		JOptionPane.showMessageDialog(null, Source);
+		
+		String nom = JOptionPane.showInputDialog("Merci d'indiquer le nom du fichier qui contiendra le comptage des symptomes");
+		JOptionPane.showMessageDialog(null, nom);
+		
+		String Filepath = JOptionPane.showInputDialog("Merci d'indiquer le chemin du dossier qui contiendra le fichier resultat");
+		JOptionPane.showMessageDialog(null, Filepath);
+		
+		
 		// first get input
 		
-		ReadSymptomDataFromFile reader = new ReadSymptomDataFromFile();
-		Map<String,Integer> Symptoms = reader.readDataFromFile(FilePath);
+		SymptomDataFromFile reader = new SymptomDataFromFile();
+		Map<String,Integer> Symptoms = reader.readDataFromFile(Source);
 		
 		System.out.println(Symptoms);
 		
-		reader.writeSymptoms("D:/Workspace/Project_DA_Java_EN_Come_to_the_Rescue_of_a_Java_Application/Project02Eclipse/", Symptoms);
+		reader.writeSymptoms(nom +".txt",Filepath, Symptoms);
 	}
 }
 	
