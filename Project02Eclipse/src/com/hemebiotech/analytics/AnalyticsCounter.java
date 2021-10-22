@@ -8,6 +8,8 @@ public class AnalyticsCounter {
 	
 	public static void main(String args[]) throws Exception {
 		
+		//Get users parameters
+		
 		String Source = JOptionPane.showInputDialog("Merci d'indiquer le chemin complet de la liste de symptomes non comptés");
 		JOptionPane.showMessageDialog(null, Source);
 		
@@ -18,12 +20,14 @@ public class AnalyticsCounter {
 		JOptionPane.showMessageDialog(null, Filepath);
 		
 		
-		// first get input
+		//first get input
 		
 		SymptomDataFromFile reader = new SymptomDataFromFile();
 		Map<String,Integer> Symptoms = reader.readDataFromFile(Source);
 		
-		System.out.println(Symptoms);
+		System.out.println("Votre nouveau fichier est disponible dans le dossier spécifié ultérieurement.");
+		
+		//Then put them into a new file
 		
 		reader.writeSymptoms(nom +".txt",Filepath, Symptoms);
 	}

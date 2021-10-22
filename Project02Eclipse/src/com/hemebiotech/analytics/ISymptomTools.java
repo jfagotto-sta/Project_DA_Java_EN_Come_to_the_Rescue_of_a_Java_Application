@@ -27,6 +27,6 @@ public interface ISymptomTools {
 	 * @param resultPath
 	 * @param symptoms
 	 */
-	public void writeSymptoms(String nom, String FilePath, Map<String, Integer> symptoms);
+	public void writeSymptoms(String name, String FilePath, Map<String, Integer> symptoms);
 
 }

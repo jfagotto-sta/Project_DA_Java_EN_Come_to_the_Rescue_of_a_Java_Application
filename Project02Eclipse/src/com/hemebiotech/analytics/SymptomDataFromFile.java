@@ -7,10 +7,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Simple brute force implementation
- *
- */
+
 public class SymptomDataFromFile implements ISymptomTools {
 
 	@Override
@@ -37,9 +34,9 @@ public class SymptomDataFromFile implements ISymptomTools {
 	}
 
 	@Override
-	public void writeSymptoms(String nom, String FilePath, Map<String, Integer> Symptoms) {
+	public void writeSymptoms(String name, String FilePath, Map<String, Integer> Symptoms) {
 		try {
-			FileWriter writer = new FileWriter(FilePath + nom);
+			FileWriter writer = new FileWriter(FilePath + name);
 			writer.write(Symptoms.toString());
 			writer.close();
 		} catch (IOException e) {
