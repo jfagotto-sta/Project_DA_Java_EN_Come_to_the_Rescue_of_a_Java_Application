@@ -11,33 +11,32 @@ import java.util.Map;
 public class SymptomDataFromFile implements ISymptomTools {
 
 	@Override
-	public Map<String, Integer> readDataFromFile(String Source) throws IOException{
+	public Map<String, Integer> readDataFromFile(String source) throws IOException{
 		
-		Map<String,Integer> Symptoms = new HashMap<>();
+		Map<String,Integer> symptoms = new HashMap<>();
 		
-		try (BufferedReader reader = new BufferedReader (new FileReader(Source))) {
+		try (BufferedReader reader = new BufferedReader (new FileReader(source))) {
 			
 			String line = reader.readLine();
 
 			while (line != null) {
-					if (Symptoms.containsKey(line)) {
-						Symptoms.put(line, Symptoms.get(line)+1);
+					if (symptoms.containsKey(line)) {
+						symptoms.put(line, symptoms.get(line)+1);
 						
 					}
 					else 
-						Symptoms.put(line, 1);
+						symptoms.put(line, 1);
 					
 					line = reader.readLine();					
 			}	
 		}
-		return Symptoms;
+		return symptoms;
 	}
 
 	@Override
-	public void writeSymptoms(String name, String FilePath, Map<String, Integer> Symptoms) {
-		try {
-			FileWriter writer = new FileWriter(FilePath + name);
-			writer.write(Symptoms.toString());
+	public void writeSymptoms(String name, String filePath, Map<String, Integer> symptoms) {
+			try (FileWriter writer = (new FileWriter(filePath + name))) {
+			writer.write(symptoms.toString());
 			writer.close();
 		} catch (IOException e) {
 			e.printStackTrace();

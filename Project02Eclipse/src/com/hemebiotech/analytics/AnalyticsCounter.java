@@ -1,6 +1,9 @@
 package com.hemebiotech.analytics;
 
+import java.io.IOException;
 import java.util.Map;
+import java.util.TreeMap;
+
 import javax.swing.JOptionPane;
 
 public class AnalyticsCounter {
@@ -10,26 +13,34 @@ public class AnalyticsCounter {
 		
 		//Get users parameters
 		
-		String Source = JOptionPane.showInputDialog("Merci d'indiquer le chemin complet de la liste de symptomes non comptés");
-		JOptionPane.showMessageDialog(null, Source);
+		String source = JOptionPane.showInputDialog("Merci d'indiquer le chemin complet de la liste de symptomes non comptés");
+		JOptionPane.showMessageDialog(null, source);
 		
 		String nom = JOptionPane.showInputDialog("Merci d'indiquer le nom du fichier qui contiendra le comptage des symptomes");
 		JOptionPane.showMessageDialog(null, nom);
 		
-		String Filepath = JOptionPane.showInputDialog("Merci d'indiquer le chemin du dossier qui contiendra le fichier resultat");
-		JOptionPane.showMessageDialog(null, Filepath);
+		String filepath = JOptionPane.showInputDialog("Merci d'indiquer le chemin du dossier qui contiendra le fichier resultat");
+		JOptionPane.showMessageDialog(null, filepath);
 		
 		
 		//first get input
+		AnalyticsCounter counter = new AnalyticsCounter();
 		
+		counter.analyse(source, nom, filepath);
+	}
+
+	public void analyse(String Source, String nom, String Filepath) throws IOException {
 		SymptomDataFromFile reader = new SymptomDataFromFile();
-		Map<String,Integer> Symptoms = reader.readDataFromFile(Source);
+		Map<String,Integer> symptoms = reader.readDataFromFile(Source);
 		
+		TreeMap test = new TreeMap<>();
+		test.putAll(symptoms);
+			
 		System.out.println("Votre nouveau fichier est disponible dans le dossier spécifié ultérieurement.");
 		
 		//Then put them into a new file
 		
-		reader.writeSymptoms(nom +".txt",Filepath, Symptoms);
+		reader.writeSymptoms(nom +".txt",Filepath, test);
 	}
 }
 	
