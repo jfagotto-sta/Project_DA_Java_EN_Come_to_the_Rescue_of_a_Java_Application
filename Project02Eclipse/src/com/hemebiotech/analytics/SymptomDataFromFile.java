@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 
 public class SymptomDataFromFile implements ISymptomTools {
@@ -35,10 +36,20 @@ public class SymptomDataFromFile implements ISymptomTools {
 
 	@Override
 	public void writeSymptoms(String name, String filePath, Map<String, Integer> symptoms) {
-			try (FileWriter writer = (new FileWriter(filePath + name))) {
-			writer.write(symptoms.toString());
+
+		try (FileWriter writer = (new FileWriter(filePath + name))) 
+		{
+			Set<Map.Entry<String, Integer>> entries = symptoms.entrySet();
+			for(Map.Entry<String, Integer> entry : entries) 
+			{
+				System.out.println(entry.getKey() + " = " + entry.getValue() + "\n");
+				writer.write(entry.getKey() + " = " + entry.getValue() + "\n");
+			}
+	
 			writer.close();
-		} catch (IOException e) {
+		} 
+		catch (IOException e) 
+		{
 			e.printStackTrace();
 		} 
 	}

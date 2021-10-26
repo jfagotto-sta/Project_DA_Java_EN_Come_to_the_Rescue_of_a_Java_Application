@@ -2,8 +2,6 @@ package com.hemebiotech.analytics;
 
 import java.io.IOException;
 import java.util.Map;
-import java.util.TreeMap;
-
 import javax.swing.JOptionPane;
 
 public class AnalyticsCounter {
@@ -29,19 +27,20 @@ public class AnalyticsCounter {
 		counter.analyse(source, nom, filepath);
 	}
 
-	public void analyse(String Source, String nom, String Filepath) throws IOException {
+	public void analyse(String source, String nom, String filepath) throws IOException {
 		SymptomDataFromFile reader = new SymptomDataFromFile();
-		Map<String,Integer> symptoms = reader.readDataFromFile(Source);
+		Map<String, Integer> symptoms = reader.readDataFromFile(source);
 		
-		TreeMap test = new TreeMap<>();
-		test.putAll(symptoms);
-			
-		System.out.println("Votre nouveau fichier est disponible dans le dossier spécifié ultérieurement.");
+		//TreeMap<String, Integer> treeMap = new TreeMap<>();
+		
+		
+	
+		
+		//System.out.println("Votre nouveau fichier est disponible dans le dossier spécifié ultérieurement.");
 		
 		//Then put them into a new file
 		
-		reader.writeSymptoms(nom +".txt",Filepath, test);
+		reader.writeSymptoms(nom +".txt",filepath, symptoms);
 	}
 }
-	
 		
