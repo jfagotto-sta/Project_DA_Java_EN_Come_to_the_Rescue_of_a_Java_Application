@@ -2,6 +2,7 @@ package com.hemebiotech.analytics;
 
 import java.io.IOException;
 import java.util.Map;
+
 import javax.swing.JOptionPane;
 
 public class AnalyticsCounter {
@@ -31,12 +32,10 @@ public class AnalyticsCounter {
 		SymptomDataFromFile reader = new SymptomDataFromFile();
 		Map<String, Integer> symptoms = reader.readDataFromFile(source);
 		
-		//TreeMap<String, Integer> treeMap = new TreeMap<>();
 		
 		
-	
 		
-		//System.out.println("Votre nouveau fichier est disponible dans le dossier spécifié ultérieurement.");
+		System.out.println("Votre nouveau fichier est disponible dans le dossier spécifié ultérieurement.");
 		
 		//Then put them into a new file
 		

@@ -4,9 +4,9 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 
 
 public class SymptomDataFromFile implements ISymptomTools {
@@ -14,7 +14,7 @@ public class SymptomDataFromFile implements ISymptomTools {
 	@Override
 	public Map<String, Integer> readDataFromFile(String source) throws IOException{
 		
-		Map<String,Integer> symptoms = new HashMap<>();
+		Map<String,Integer> symptoms = new TreeMap<>();
 		
 		try (BufferedReader reader = new BufferedReader (new FileReader(source))) {
 			
@@ -32,20 +32,24 @@ public class SymptomDataFromFile implements ISymptomTools {
 			}	
 		}
 		return symptoms;
+			
 	}
 
 	@Override
 	public void writeSymptoms(String name, String filePath, Map<String, Integer> symptoms) {
 
-		try (FileWriter writer = (new FileWriter(filePath + name))) 
-		{
+		try (FileWriter writer = (new FileWriter(filePath + name))) {
 			Set<Map.Entry<String, Integer>> entries = symptoms.entrySet();
-			for(Map.Entry<String, Integer> entry : entries) 
-			{
-				System.out.println(entry.getKey() + " = " + entry.getValue() + "\n");
+			for(Map.Entry<String, Integer> entry : entries) {
+				System.out.println(entry.getKey() + " =  " + entry.getValue() + "\n");
 				writer.write(entry.getKey() + " = " + entry.getValue() + "\n");
 			}
-	
+			
+		//List<String> allSymptoms = new ArrayList<String>(symptoms.keySet());
+		//for (String symptom : allSymptoms) {
+		//writer.write(symptom + " : " + symptoms.get(symptom)+ "\n");
+		//Collections.sort(allSymptoms);
+
 			writer.close();
 		} 
 		catch (IOException e) 
@@ -53,4 +57,5 @@ public class SymptomDataFromFile implements ISymptomTools {
 			e.printStackTrace();
 		} 
 	}
-}	
+		
+}
