@@ -16,7 +16,7 @@ public class SymptomDataFromFile implements ISymptomTools {
 		
 		Map<String,Integer> symptoms = new TreeMap<>();
 		
-		try (BufferedReader reader = new BufferedReader (new FileReader(source))) {
+		try (BufferedReader reader = new BufferedReader (new FileReader(source))){ 
 			
 			String line = reader.readLine();
 
@@ -29,27 +29,28 @@ public class SymptomDataFromFile implements ISymptomTools {
 						symptoms.put(line, 1);
 					
 					line = reader.readLine();					
-			}	
+			}
 		}
+		catch (IOException e) 
+		{
+			e.printStackTrace();
+		} 
 		return symptoms;
-			
 	}
+	
 
 	@Override
 	public void writeSymptoms(String name, String filePath, Map<String, Integer> symptoms) {
-
+		String finalKey;
+		
 		try (FileWriter writer = (new FileWriter(filePath + name))) {
 			Set<Map.Entry<String, Integer>> entries = symptoms.entrySet();
 			for(Map.Entry<String, Integer> entry : entries) {
-				System.out.println(entry.getKey() + " =  " + entry.getValue() + "\n");
-				writer.write(entry.getKey() + " = " + entry.getValue() + "\n");
+				finalKey = entry.getKey() + " = " + entry.getValue() + "\n";
+				System.out.println(finalKey);
+				writer.write(finalKey);
 			}
-			
-		//List<String> allSymptoms = new ArrayList<String>(symptoms.keySet());
-		//for (String symptom : allSymptoms) {
-		//writer.write(symptom + " : " + symptoms.get(symptom)+ "\n");
-		//Collections.sort(allSymptoms);
-
+	
 			writer.close();
 		} 
 		catch (IOException e) 

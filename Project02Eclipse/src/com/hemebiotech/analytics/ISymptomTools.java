@@ -18,7 +18,7 @@ public interface ISymptomTools {
 	 * @return a map with strings extracts and count from the file : symptoms in our case
 	 * @throws IOException 
 	 */
-	public Map<String, Integer> readDataFromFile(String Source) throws IOException;
+	public Map<String, Integer> readDataFromFile(String Source) throws IOException; 
 		
 	
 	
